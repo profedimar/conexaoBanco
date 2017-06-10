@@ -17,24 +17,28 @@ import java.util.logging.Logger;
  */
 public class ClienteController {
 
-    public boolean inserir() {
-        String sql = "INSERT INTO cliente(nome,codigo) VALUES ('Jole', 7)";
+    public boolean inserir(int codigo, String nm) {
+        String sql = "INSERT INTO cliente(nome,codigo) VALUES (?, ?)";//define instrução SQL
         PreparedStatement ps;
         try {
-            ps = Conexao.getConexao().prepareStatement(sql);
-            ps.execute();
+            ps = Conexao.getConexao().prepareStatement(sql);//prepara instrução SQL
+            ps.setString(1, nm);// primeiro parâmetro indica a ? correspondente, segundo parâmetro a variável que substituirá a ?
+            ps.setInt(2, codigo); // primeiro parâmetro indica a ? correspondente, segundo parâmetro a variável que substituirá a ?
+            ps.execute(); //executa SQL preparada
             return true;
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }
-    
+
     public static void main(String[] args) {
         //crie um objeto da classe Cliente controller
         ClienteController controller = new ClienteController();
         //chame o método inserir desse objeto
-        controller.inserir();
+        controller.inserir(11, "Pietra");
+        controller.inserir(12, "Maila");
+        controller.inserir(13, "Patrícia");
         //execute e confira no BD -- BD é muito legal, neh :)
     }
 
