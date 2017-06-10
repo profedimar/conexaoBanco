@@ -17,11 +17,11 @@ import java.util.logging.Logger;
 public class Conexao {
 
     private static Connection conn;
-    private final static String driver = "org.postgresql.Driver"; //sempre assim para o PostgreSQL
-    private final static String ip = "localhost/"; //ip do computador que contém o banco
-    public static String dataBase = "aula"; //nome base de dados no PostgreSQL
-    public static String user = "postgres"; //usuário do banco de dados
-    public static String password = "postgres"; //senha para o usuário 
+    private final static String DRIVER = "org.postgresql.Driver"; //sempre assim para o PostgreSQL
+    private final static String IP = "localhost/"; //ip do computador que contém o banco
+    public final static String DATABASE = "aula"; //nome base de dados no PostgreSQL
+    public final static String USER = "postgres"; //usuário do banco de dados
+    public final static String PASSWORD = "postgres"; //senha para o usuário 
 
 
     /*
@@ -34,8 +34,8 @@ public class Conexao {
         }
 
         //se não existe conexão cria uma nova
-        Class.forName(driver); //não mexer - definindo o JDBC utilizado
-        conn = java.sql.DriverManager.getConnection("jdbc:postgresql://" + ip + dataBase, user, password); //não mexer -- definindo os parâmetros de conexão
+        Class.forName(DRIVER); //não mexer - definindo o JDBC utilizado
+        conn = java.sql.DriverManager.getConnection("jdbc:postgresql://" + IP + DATABASE, USER, PASSWORD); //não mexer -- definindo os parâmetros de conexão
         return conn;
 
     }

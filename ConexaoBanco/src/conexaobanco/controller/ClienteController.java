@@ -7,6 +7,7 @@ package conexaobanco.controller;
 
 import conexaobanco.Conexao;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,14 +32,32 @@ public class ClienteController {
             return false;
         }
     }
+    
+    public void mostrarTodosClientes(){
+        String sql = "SELECT codigo, nome FROM cliente";
+        PreparedStatement ps;
+        try {
+            ps = Conexao.getConexao().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                System.out.println(rs.getInt("codigo")+" - "+rs.getString("nome"));
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 
     public static void main(String[] args) {
         //crie um objeto da classe Cliente controller
         ClienteController controller = new ClienteController();
         //chame o método inserir desse objeto
-        controller.inserir(11, "Pietra");
-        controller.inserir(12, "Maila");
-        controller.inserir(13, "Patrícia");
+        //controller.inserir(11, "Pietra");
+        //controller.inserir(12, "Maila");
+        //controller.inserir(13, "Patrícia");
+        
+        controller.mostrarTodosClientes();
+        
         //execute e confira no BD -- BD é muito legal, neh :)
     }
 
