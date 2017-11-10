@@ -17,35 +17,32 @@ import javax.swing.JOptionPane;
  *
  * @author Administrador
  */
-public class PessoaDao {
+public class CategoriaDao {
 
-    public boolean inserir(String nome, int cpf) {
-        String sql = "INSERT INTO pessoa(nome,cpf) VALUES (?, ?)";//define instrução SQL
+    public boolean inserir(String descricao) {
+        String sql = "INSERT INTO categoria(descricao) VALUES (?)";//define instrução SQL
         PreparedStatement ps;
         try {
             ps = Conexao.getConexao().prepareStatement(sql);//prepara instrução SQL
-            ps.setString(1, nome);// primeiro parâmetro indica a ? correspondente, segundo parâmetro a variável que substituirá a ?
-            ps.setInt(2, cpf); // primeiro parâmetro indica a ? correspondente, segundo parâmetro a variável que substituirá a ?
+            ps.setString(1, descricao);// primeiro parâmetro indica a ? correspondente, segundo parâmetro a variável que substituirá a ?
             ps.execute(); //executa SQL preparada
             return true;
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(PessoaDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CategoriaDao.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }
 
     public static void main(String[] args) {
-        //crie um objeto da classe Cliente controller
-        PessoaDao dao = new PessoaDao();
+        //crie um objeto da classe 
+        CategoriaDao dao = new CategoriaDao();
         //chame o método inserir desse objeto
-        boolean result = dao.inserir("Pietra", 01030371016);
+        boolean result = dao.inserir("Comédia");
         if (result) {
             JOptionPane.showMessageDialog(null, "Inserção realizada com sucesso!");
         } else {
             JOptionPane.showMessageDialog(null, "Problemas com a inserção!");
         }
-
-        //execute e confira no BD -- BD é muito legal, neh :)
     }
 
 }
