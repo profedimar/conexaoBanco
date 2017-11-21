@@ -19,7 +19,7 @@ public class Conexao {
     private static Connection conn;
     private final static String DRIVER = "org.postgresql.Driver"; //sempre assim para o PostgreSQL
     private final static String IP = "localhost/"; //ip do computador que contém o banco
-    public final static String DATABASE = "aula"; //nome base de dados no PostgreSQL
+    public final static String DATABASE = "aula2111"; //nome base de dados no PostgreSQL
     public final static String USER = "postgres"; //usuário do banco de dados
     public final static String PASSWORD = "postgres"; //senha para o usuário 
 

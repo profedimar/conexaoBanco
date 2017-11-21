@@ -87,7 +87,6 @@ public class TelaCategoria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        
         //crie um objeto da classe 
         CategoriaDao dao = new CategoriaDao();
         //chame o método inserir desse objeto

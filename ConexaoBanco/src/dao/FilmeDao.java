@@ -21,8 +21,8 @@ import javax.swing.JOptionPane;
  */
 public class FilmeDao {
 
-    public boolean inserir(String titulo, String duracao, String dataEstreia, String genero) {
-        String sql = "INSERT INTO filme(titulo, duracao, data_estreia, genero) VALUES (?, ?, ?, ?)";//define instrução SQL
+    public boolean inserir(String titulo, String duracao, String dataEstreia, String genero, String rating) {
+        String sql = "INSERT INTO filme(titulo, duracao, data_estreia, genero, rating) VALUES (?, ?, ?, ?, ?)";//define instrução SQL
         PreparedStatement ps;
         try {
             ps = Conexao.getConexao().prepareStatement(sql);//prepara instrução SQL
@@ -30,6 +30,7 @@ public class FilmeDao {
             ps.setTime(2, Time.valueOf(duracao)); //exemplo de hora
             ps.setDate(3, Date.valueOf(dataEstreia)); //exemplo de data
             ps.setString(4, genero); //Exemplo de String
+            ps.setInt(5, Integer.parseInt(rating));
             ps.execute(); //executa SQL preparada
             return true;
         } catch (SQLException | ClassNotFoundException ex) {
@@ -42,7 +43,7 @@ public class FilmeDao {
         //crie um objeto da classe 
         FilmeDao dao = new FilmeDao();
         //chame o método inserir desse objeto
-        boolean result = dao.inserir("Poeria em alto mar", "02:33:00", "1953-02-15", "drama");
+        boolean result = dao.inserir("Poeria em alto mar", "02:33:00", "1953-02-15", "drama", "4");
         if (result) {
             JOptionPane.showMessageDialog(null, "Inserção realizada com sucesso!");
         } else {
