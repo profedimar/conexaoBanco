@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class FilmeDao {
 
-    public boolean inserir(String titulo, String duracao, String dataEstreia, String genero, String rating) {
+    public boolean inserir(String titulo, String duracao, String dataEstreia, String genero, String rating) {//todos como String aqui nesta linha
         String sql = "INSERT INTO filme(titulo, duracao, data_estreia, genero, rating) VALUES (?, ?, ?, ?, ?)";//define instrução SQL
         PreparedStatement ps;
         try {
@@ -30,7 +30,7 @@ public class FilmeDao {
             ps.setTime(2, Time.valueOf(duracao)); //exemplo de hora
             ps.setDate(3, Date.valueOf(dataEstreia)); //exemplo de data
             ps.setString(4, genero); //Exemplo de String
-            ps.setInt(5, Integer.parseInt(rating));
+            ps.setInt(5, Integer.parseInt(rating)); //exemplo de inteiro
             ps.execute(); //executa SQL preparada
             return true;
         } catch (SQLException | ClassNotFoundException ex) {

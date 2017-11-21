@@ -6,6 +6,7 @@
 package tela;
 
 import dao.CategoriaDao;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -42,6 +43,15 @@ public class TelaCategoria extends javax.swing.JFrame {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel2.setText("Descrição:");
+
+        jtfDescricao.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtfDescricaoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtfDescricaoFocusLost(evt);
+            }
+        });
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +107,22 @@ public class TelaCategoria extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Problemas com a inserção!");
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void jtfDescricaoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfDescricaoFocusGained
+        // TODO add your handling code here:
+        if (jtfDescricao.getText().equals("Descrição")) {
+            jtfDescricao.setText("");
+            jtfDescricao.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_jtfDescricaoFocusGained
+
+    private void jtfDescricaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfDescricaoFocusLost
+        // TODO add your handling code here:
+         if (jtfDescricao.getText().isEmpty()) {
+            jtfDescricao.setForeground(Color.GRAY);
+            jtfDescricao.setText("Descrição");
+        }
+    }//GEN-LAST:event_jtfDescricaoFocusLost
 
     /**
      * @param args the command line arguments
